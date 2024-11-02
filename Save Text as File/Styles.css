@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Universal styling for all elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #17A2B8;
+    min-height: 100vh;
+}
+
+/* Wrapper styling for the main content area */
+.wrapper {
+    width: 450px;
+    border-radius: 7px;
+    background: #fff;
+    padding: 30px 25px 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+}
+
+/* Styling for the title */
+.wrapper h1 {
+    font-size: 36px;
+    color: #ff8e4d;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Styling for the description */
+.wrapper p {
+    font-size: 15px;
+    color: #000000;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* General styles for input fields, textarea, and button */
+.wrapper :where(textarea, input, select, button) {
+    width: 100%;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+}
+
+/* Textarea styles */
+.wrapper textarea {
+    height: 270px;
+    resize: none;
+    padding: 8px 13px;
+    border: 1px solid #ccc;
+}
+
+.wrapper textarea::placeholder {
+    color: #999; /* Lighter placeholder color */
+}
+
+.wrapper textarea:focus {
+    border-color: #ff8e4d;
+    box-shadow: 0 0 5px #ff700b; /* Subtle focus glow */
+}
+
+/* Layout of file options */
+.file-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/* Individual option styling */
+.file-options .option {
+    width: calc(50% - 8px);
+}
+
+.option label {
+    font-size: 18px;
+    color: #333;
+}
+
+/* Styling for file name input and dropdown */
+.option :where(input, .select-menu) {
+    height: 50px;
+    padding: 0 15px;
+    margin-top: 6px;
+    border-radius: 5px;
+    border: 1px solid #bfbfbf;
+}
+
+/* Custom dropdown styling */
+.option .select-menu select {
+    height: 50px;
+    appearance: none;
+    padding-right: 25px;
+    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2Ij4KICAgIDxwYXRoIGQ9Ik01LjMgNi4zbDIuNyAyLjdMMTEgNi4zIiBmaWxsPSIjMTNhMDAwIi8+Cjwvc3ZnPg==') no-repeat right center; /* Custom dropdown arrow */
+    background-size: 12px;
+}
+
+/* Save button styling */
+.wrapper .save-btn {
+    color: #fff;
+    margin-top: 20px;
+    padding: 16px 0;
+    cursor: pointer;
+    background: #ff8e4d;
+    border-radius: 25px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.wrapper .save-btn:hover {
+    background: #ff700b;
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+.wrapper .save-btn:active {
+    transform: scale(0.98); /* Slight press effect */
+}
+
+/* Responsive design adjustments for smaller screens */
+@media (max-width: 500px) {
+    .wrapper {
+        width: 90%;
+        padding: 20px;
+    }
+}

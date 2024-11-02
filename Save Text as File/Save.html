@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Save Text as File</title>
+    <!-- Link to CSS styles -->
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Styles.css">
+    <!-- Link to JavaScript with defer to load it after HTML -->
+    <script src="Script.js" defer></script>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <!-- Main title and description -->
+      <h1>Save Text as File</h1>
+      <p>Type or paste your text below, choose a file format, name it, and download it as a file.</p>
+
+      <!-- Text area for user to input text -->
+      <textarea spellcheck="false" placeholder="Enter something to save" required></textarea>
+      
+      <div class="file-options">
+        <!-- Input for file name -->
+        <div class="option file-name">
+          <label>File name</label>
+          <input type="text" spellcheck="false" placeholder="Enter file name">
+        </div>
+
+        <!-- Dropdown to select file format -->
+        <div class="option save-as">
+          <label>Save as</label>
+          <div class="select-menu">
+            <select>
+              <option value="text/plain">Text File (.txt)</option>
+              <option value="text/javascript">JS File (.js)</option>
+              <option value="text/html">HTML File (.html)</option>
+              <option value="image/svg+xml">SVG File (.svg)</option>
+              <option value="application/msword">Doc File (.doc)</option>
+              <option value="application/vnd.ms-powerpoint">PPT File (.ppt)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Save button for initiating download -->
+      <button class="save-btn" type="button">Save As Text File</button>
+    </div>
+    
+  </body>
+</html>
