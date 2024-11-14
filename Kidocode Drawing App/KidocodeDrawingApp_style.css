@@ -118,20 +118,20 @@ section{
 }
 
 .colors .option:nth-child(3){
-    background-color: #808080;
+    background-image: linear-gradient(to left top, red, green, blue);
     border: 1px solid #bfbfbf;
 }
 
 .colors .option1:nth-child(1){
-    background-color: #eb4034;
+    background-color: red;
 }
 
 .colors .option1:nth-child(2){
-    background-color: #008000;
+    background-color: green;
 }
 
 .colors .option1:nth-child(3){
-    background-color: #0000FF;
+    background-color: blue;
 }
 
 .colors .option.selected::before{
