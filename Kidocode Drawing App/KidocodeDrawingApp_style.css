@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #4A98F7;
+}
+
+.container{
+    display: flex;
+    flex-direction: column; /* Stack vertically */
+    align-items: center;
+    width: 100%;
+    gap: 5px;
+    max-width: 1050px;
+    padding: 10px;
+}
+
+section{
+    background: #fff;
+    border-radius: 7px;
+}
+
+.tools-board{
+    display: flex;
+    flex-direction: row; /* Stack in column */
+    justify-content: space-between;
+    width: 100%;
+    max-width: 600px;
+    padding: 20px 20px 0;
+}
+
+.tools-board .row{
+    margin-left: 20px;
+}
+
+.row .options{
+    list-style: none;
+    padding: 1px;
+    margin: 15px 0 0 5px;
+}
+
+.row .options .option{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.option:is(:hover, .active) img{
+    filter: invert(17%) sepia(90%) saturate(3000%) hue-rotate(900deg) brightness(100%) contrast(100%);
+}
+
+.option :where(span, label){
+    color: #5a6168;
+    cursor: pointer;
+    padding-left: 10px;
+}
+
+.option:is(:hover, .active):where(span, label){
+    color:#4A98F7;
+}
+
+.option #fill-color{
+    cursor: pointer;
+    height: 14px;
+    width: 14px;
+}
+
+#fill-color:checked ~ label{
+    color:#4A98F7;
+}
+
+.option #size-slider{
+    width: 100%;
+    height: 5px;
+    margin-top: 10px;
+}
+
+.colors .options{
+    display: flex;
+    gap: 5px;
+    margin-bottom: -20px;
+}
+
+.colors .option{
+    height: 25px;
+    width: 25px;
+    background: red;
+    border-radius: 50%;
+    margin-top: 1px;
+    position: relative;
+}
+.colors .option1{
+    height: 25px;
+    width: 25px;
+    background: red;
+    border-radius: 50%;
+    margin-top: 1px;
+    position: relative;
+}
+
+.colors .option:nth-child(1){
+    background-color: #fff;
+    border: 1px solid #bfbfbf;
+}
+
+.colors .option:nth-child(2){
+    background-color: #000000;
+}
+
+.colors .option:nth-child(3){
+    background-image: linear-gradient(to left top, red, green, blue);
+    border: 1px solid #bfbfbf;
+}
+
+.colors .option1:nth-child(1){
+    background-color: red;
+}
+
+.colors .option1:nth-child(2){
+    background-color: green;
+}
+
+.colors .option1:nth-child(3){
+    background-color: blue;
+}
+
+.colors .option.selected::before{
+    position: absolute;
+    content: "";
+    top: 50%;
+    left: 50%;
+    height: 17px;
+    width: 17px;
+    background: inherit;
+    border-radius: inherit;
+    border: 2px solid #fff;
+    transform: translate(-47%, -51%);
+}
+
+.colors .option:last-child:hover::before{
+    border-color: #ccc;
+}
+
+.colors .option1.selected::before{
+    position: absolute;
+    content: "";
+    top: 50%;
+    left: 50%;
+    height: 17px;
+    width: 17px;
+    background: inherit;
+    border-radius: inherit;
+    border: 2px solid #fff;
+    transform: translate(-47%, -51%);
+}
+
+.colors .option1:last-child:hover::before{
+    border-color: #ccc;
+}
+
+.option #color-picker{
+    opacity: 0;
+    cursor: pointer;
+}
+
+.buttons button{
+    width: 100%;
+    color: #fff;
+    border: none;
+    outline: none;
+    padding: 11px 0;
+    margin-bottom: 20px;
+    background: none;
+    border-radius: 5px;
+}
+
+.buttons .clear-canvas{
+    color: #6c757d;
+    border: 1px solid #6c757d;
+    transition: all 0.3s ease;
+}
+
+.clear-canvas:hover{
+    color: #fff;
+    background: #6c757d;
+}
+
+.buttons .save-img{
+    background: #4A98F7;
+    border: 1px solid #6c757d;
+}
+
+.save-img:hover{
+    color: #fff;
+    background: #6c757d;
+}
+
+.drawing-board{
+    flex: 1;  
+}
+
+.drawing-board canvas{
+    width: 600px;
+    height: 500px;
+    max-height: 1000px;
+    margin-bottom: 3px;
+}
