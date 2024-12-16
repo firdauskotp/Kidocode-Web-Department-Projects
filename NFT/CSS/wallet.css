@@ -1,0 +1,324 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column; /* Flex column layout for header, main, and footer */
+}
+
+.navbar {
+    width: 100%;
+    background-color: rgba(106, 90, 205, 0.9); /* Transparent purple */
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px; /* Space for larger header */
+    z-index: 10; /* Higher z-index to stay above other elements */
+}
+
+.nav-links {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .nav-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1.2rem;
+    position: relative;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Hover effect with bounce */
+  .nav-links a:hover {
+    transform: translateY(-5px);
+    color: #ffcc00;
+  }
+  
+  /* Active state underline */
+  .nav-links a.navigate-active {
+    border-bottom: 2px solid #ffcc00;
+  }
+  
+  /* Smooth underline transition for active state */
+  .nav-links a.navigate-active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 2px;
+    background: #ffcc00;
+    transition: left 0.3s ease, width 0.3s ease;
+  }
+  
+ /* Profile Container */
+.profile-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  /* Profile Picture */
+  .profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid white;
+    object-fit: cover;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  /* Hover effect for profile picture */
+  .profile-container:hover .profile-pic {
+    transform: scale(1.1);
+  }
+  
+  /* Dropdown Menu */
+  .dropdown-menu {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background: rgba(106, 90, 205, 0.9);
+    color: white;
+    padding: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    z-index: 10;
+    flex-direction: column;
+    width: 150px;
+  }
+  
+  .dropdown-menu a {
+    text-decoration: none;
+    color: white;
+    margin: 5px 0;
+    display: block;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .dropdown-menu a:hover {
+    color: #ffcc00;
+    transform: translateX(5px);
+  }
+  
+  /* Show dropdown on profile container hover */
+  .profile-container:hover .dropdown-menu {
+    display: flex;
+  }
+   
+/* Keep dropdown visible when interacting with it */
+.profile-container.active .dropdown-menu {
+    display: flex;
+  }
+
+/* Fullscreen Main Content */
+.content {
+    flex-grow: 1; /* Pushes footer to the bottom */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 70px); /* Subtracts the height of the header */
+    box-sizing: border-box;
+}
+
+/* Wallet Layout - Side by Side */
+.wallet-layout {
+    display: flex;
+    align-items: center; /* Vertically align title and button */
+    justify-content: flex-end; /* Align everything to the right */
+    width: 100%;
+    max-width: 1200px; /* Add a max width for larger screens */
+    margin: auto;
+    padding-right: 100px; /* Add space from the right edge */
+    gap: 80px; /* Space between title and button */
+}
+
+/* Wallet Title Styling */
+.wallet-layout h1 {
+    font-size: 3rem;
+    text-align: right;
+    color: #333;
+    margin: 0; /* Remove any default margin */
+}
+
+/* Button Styling */
+.connect-wallet-btn {
+    background-color: #6a5acd;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 20px 40px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.connect-wallet-btn:hover {
+    background-color: #b5a0ff;
+    transform: translateY(-3px);
+}
+
+/* Container for the vertical scroll */
+.vertical-loop {
+  position: relative; /* Stick to the left side of the screen */
+  top: 0;
+  left: 0;
+  width: 350px; /* Width of the image */
+  height: 100vh; /* Full screen height */
+  overflow: hidden; /* Hide content outside the container */
+  mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+}
+
+/* Scrolling track */
+.scroll-track-wallet {
+  display: flex;
+  gap: 40px;
+  flex-direction: column; /* Arrange images vertically */
+  animation: scroll-vertical 20s linear infinite; /* Smooth vertical scrolling */
+  width: max-content; /* Ensures all images are included */
+}
+
+/* Image styling with rotation */
+.nft-pic-nft {
+  margin: 25px;
+  flex-shrink: 0;
+  object-fit: contain; /* Ensure images scale proportionally */
+  transform: rotate(90deg); /* Rotate images 90 degrees to the right */
+}
+
+/* Vertical scrolling animation */
+@keyframes scroll-vertical {
+  from {
+      transform: translateY(0);
+  }
+  to {
+      transform: translateY(-50%);
+  }
+}
+
+/* Footer */
+.footer {
+    background-color: #6a5acd;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    width: 100%;
+    position: relative;
+}
+
+/* Social Media Icons in Footer - Left-aligned */
+.social-media-icons {
+    display: flex;
+    justify-content: flex-start; /* Align icons to the left */
+    align-items: center;
+    gap: 20px; /* Space between icons */
+}
+
+.social-icon {
+    color: #fff; /* Icon color */
+    font-size: 2rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: translateY(-5px); /* Hover effect to move icon */
+    color: #ffcc00; /* Change color on hover */
+}
+
+/* Optional: Footer Links Styling */
+.footer-links {
+    display: flex;
+    justify-content: center; /* Center the footer links */
+    align-items: center;
+    gap: 15px;
+    flex-grow: 1; /* Makes the footer links take more space to center */
+    position: absolute; /* Position it in the middle */
+    left: 50%;
+    top: 5%;
+    transform: translateX(-50%); /* Adjust positioning to be exactly in the center */
+    font-size: 1.3em;
+    margin-top: 12px;
+}
+
+.footer-links a {
+    margin: 0 10px;
+    color: #ffcc00;
+    text-decoration: none;
+        transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.footer-links a:hover {
+    transform: translateY(-5px); /* Hover effect to move icon */
+    color: #ffcc00; /* Change color on hover */
+}
+
+.email-submit{
+    position: relative;
+    text-align: left;
+    padding-left: 10px;
+    width: 500px;
+}
+
+.email-sumit{
+    display: blcok;
+    background-color: #5acd67;
+}
+
+.email-input{
+    text-align: center;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 30px;
+}
+
+.submit-btn {
+    background-color: #9b8dfa;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.submit-btn:hover {
+    background-color: #b5a0ff;
+    transform: translateY(-3px);
+}
+
+.copyRight{
+    position: absolute;
+    width: 500px;
+    right: 40px;
+    bottom: 15px;
+    text-align: right;
+}
+
+.statement{
+    position: absolute;
+    width: 550px;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 15px;
+    text-align: center;
+}
+
+.footerLogo{
+    position: absolute;
+    right: 25px;
+    bottom: 30%;
+}

@@ -1,0 +1,61 @@
+.body-header{
+    text-align: center;
+    margin: 25px;
+    font-size: 3em;
+}
+
+.pic-show {
+    position: relative;
+    overflow: hidden; /* Ensures content stays within the container */
+    width: 1500px; /* Set the desired width of the container */
+    height: 350px; /* Set to the height of the images */
+    /* Add a gradient mask for fade effect */
+    mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+}
+
+.scroll-track {
+    display: flex;
+    align-items: center;
+    gap: 40px; /* Space between images */
+    animation: scroll-left 20s linear infinite; /* Smooth scrolling animation */
+    width: max-content; /* Ensures all images are included */
+}
+
+.nft-pic {
+    margin: 25px;
+    flex-shrink: 0;
+    object-fit: contain; /* Ensure images scale proportionally */
+}
+
+/* Keyframes for the horizontal scrolling */
+@keyframes scroll-left {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%); /* Scroll halfway for seamless looping */
+    }
+}
+
+.explore-marketplace-btn{
+    background-color: #6a5acd;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 20px 40px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+
+}
+
+.explore-marketplace-btn:hover{
+    background-color: #b5a0ff;
+    transform: translateY(-5px);
+}
+
+.marketplace-btn{
+    text-align: center;
+}
