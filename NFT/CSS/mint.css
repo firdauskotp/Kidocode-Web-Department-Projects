@@ -1,0 +1,235 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column; /* Flex column layout for header, main, and footer */
+}
+
+.navbar {
+    width: 100%;
+    background-color: rgba(106, 90, 205, 0.9); /* Transparent purple */
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px; /* Space for larger header */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Shadow effect */
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1.2rem;
+}
+
+.nav-links a.active {
+    border-bottom: 2px solid #ffcc00;
+}
+
+h1{
+    font-size: 2rem;
+    margin-bottom: 30px;
+    padding-top: 30px;
+    color: #333;
+    text-align: center;
+}
+
+.h1class{
+    background-color: #6c5ce7;
+    margin-left: -40px;
+    margin-right: -40px;
+    border-radius: 30px 35px 0px 0px;
+}
+
+.container hr {
+    margin-bottom: 40px;
+}
+
+.container {
+    margin: 40px auto;
+    padding: 0 40px 40px 40px;
+    width: 80%;
+    border: 2px solid rgb(175, 175, 175);
+    border-radius: 30px;
+    box-shadow: 10px 10px 15px rgba(87, 87, 87, 0.1);
+}
+
+/* Buttons */
+.primary-button {
+    background-color: #6c5ce7;
+    color: white;
+    padding: 12px 40px;
+    border: none;
+    border-radius: 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 25px;
+    height: 55px;
+    width: 30%;
+    display: block; /* Makes the button behave as a block element */
+    margin-left: auto; /* Centers it horizontally */
+    margin-right: auto;
+}
+
+.primary-button:hover {
+    transform: scale(1.1);
+}
+
+/* Form group styling */
+.form-group {
+    margin-bottom: 24px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.form-group label {
+    width: 150px;
+    font-weight: 500;
+    padding-top: 10px;
+    color: #333;
+}
+
+.form-group a {
+    text-align: center;
+    padding: 1% 3% 0 5%;
+}
+
+/* Drop Zone */
+.drop-zone {
+    border: 2px dashed var(--border-color);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    margin-right: 5%;
+    background-color: white;
+    cursor: pointer;
+    width: 42%;
+    height: 320px;
+    position: relative;
+    float: left;
+    display: flex; /* Make it a flex container */
+    flex-direction: column; /* Arrange items vertically */
+    align-items: center; /* Center items horizontally */
+}
+
+.file-input {
+  text-align: center;
+}
+
+.drop-zone:hover {
+    border-color: var(--primary-color);
+}
+
+/* Input fields */
+.input-field {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-size: 1rem;
+    background-color: white;
+    transition: border-color 0.3s ease;
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: #6c5ce7;
+}
+
+/* Collection dropdown */
+select.input-field {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23333' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+}
+
+textarea.input-field {
+    min-height: 100px;
+    resize: vertical;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Footer */
+.footer {
+    background-color: #6a5acd;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    width: 100%;
+    position: relative;
+}
+
+
+/* Social Media Icons in Footer - Left-aligned */
+.social-media-icons {
+    display: flex;
+    justify-content: flex-start; /* Align icons to the left */
+    align-items: center;
+    gap: 20px; /* Space between icons */
+    margin-top: 1%;
+}
+
+.social-icon {
+    color: #fff; /* Icon color */
+    font-size: 2rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: translateY(-5px); /* Hover effect to move icon */
+    color: #ffcc00; /* Change color on hover */
+}
+
+/* Optional: Footer Links Styling */
+.footer-links {
+    display: flex;
+    justify-content: center; /* Center the footer links */
+    align-items: center;
+    gap: 15px;
+    flex-grow: 1; /* Makes the footer links take more space to center */
+    position: absolute; /* Position it in the middle */
+    left: 50%;
+    top: 13%;
+    transform: translateX(-50%); /* Adjust positioning to be exactly in the center */
+    font-size: 1.3em;
+    margin-top: 10px;
+}
+
+.footer-links a {
+    margin: 0 10px;
+    color: #ffcc00;
+    text-decoration: none;
+}
+
+.email-input{
+    border-radius: 18px;
+    height: 40px;
+}
+
+.submit-btn{
+    border-radius: 18px;
+    height: 40px;
+}
