@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase NFT</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Menu -->
+    <nav class="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="wallet.html">Wallet</a>
+        <a href="mint.html">Mint NFT</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="marketplace.html">Marketplace</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <h1>Purchase NFT</h1>
+        
+        <!-- NFT Details -->
+        <div id="nft-container" class="nft-container">
+            <div class="nft-image" id="nft-image-container">
+                <img id="nft-image" src="https://picsum.photos/900/600" alt="NFT Image">
+            </div>
+            <div class="nft-info">
+                <h2 id="nft-name">NFT Name</h2>
+                <p id="nft-description">NFT Description</p>
+                <p id="nft-details">Token ID: Loading...</p>
+                <p id="nft-price">Price: Loading...</p>
+                <p id="nft-seller">Seller: Loading...</p>
+            </div>
+        </div>
+
+        <!-- Buy Confirmation -->
+        <form id="buy-form">
+            <p>Do you want to proceed with the purchase?</p>
+            <br>
+            <button type="button" id="buy-button" class="primary-button">Purchase</button>
+            <button type="button" id="cancel-button" class="secondary-button" onclick="window.location.href='marketplace.html'">Cancel</button>
+        </form>
+
+        <!-- Spinner -->
+        <div id="loading" class="loading-spinner" style="display: none;">Processing Purchase...</div>
+
+        <!-- Purchase Status -->
+        <div id="buy-status" class="status-text" style="display: none;"></div>
+    </main>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Web3.js and Custom Script -->
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.9.0/dist/web3.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
