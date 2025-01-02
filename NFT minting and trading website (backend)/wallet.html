@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect Wallet</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="wallet.html" class="active">Wallet</a>
+        <a href="mint.html">Mint</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="marketplace.html">Marketplace</a>
+    </nav>
+    
+    <main class="container">
+        <h1>Connect Your Wallet</h1>
+        <div class="wallet-section">
+            <button id="connect-button" class="primary-button">Connect to MetaMask</button>
+            <button id="disconnect-button" class="primary-button" style="display: none;">Disconnect Wallet</button>
+            <p id="wallet-status" class="status-text"></p>
+        </div>
+    </main>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.9.0/dist/web3.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
