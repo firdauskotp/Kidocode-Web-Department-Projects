@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFT Marketplace</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Menu -->
+    <nav class="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="wallet.html">Wallet</a>
+        <a href="mint.html">Mint NFT</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="marketplace.html" class="active">Marketplace</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <h1>NFT Marketplace</h1>
+        <div id="marketplace" class="nft-grid">
+            <!-- NFT Cards will be injected here dynamically -->
+        </div>
+
+        <!-- Spinner -->
+        <div id="loading" class="loading-spinner">Loading NFTs...</div>
+
+        <!-- Status Message -->
+        <div id="marketplace-status" class="status-text" style="display: none;"></div>
+    </main>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Web3.js and Custom Script -->
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.9.0/dist/web3.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

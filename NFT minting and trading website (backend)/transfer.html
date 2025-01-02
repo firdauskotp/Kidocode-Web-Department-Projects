@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transfer NFT</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Menu -->
+    <nav class="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="wallet.html">Wallet</a>
+        <a href="mint.html">Mint NFT</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="marketplace.html">Marketplace</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <h1>Transfer NFT</h1>
+        
+        <!-- NFT Details -->
+        <div id="nft-container" class="nft-container">
+            <div class="nft-image" id="nft-image-container">
+                <img id="nft-image" src="placeholder.png" alt="NFT Image">
+            </div>
+            <div class="nft-info">
+                <h2 id="nft-name">NFT Name</h2>
+                <p id="nft-description">NFT Description</p>
+                <p id="nft-details">Token ID: Loading...</p>
+            </div>
+        </div>
+
+        <!-- Transfer Form -->
+        <form id="transfer-form">
+            <div class="form-group">
+                <label for="recipient">Recipient Address:
+                    <span class="tooltip" title="Enter a valid Ethereum wallet address starting with '0x'.">?</span>
+                </label>
+                <div class="input-container">
+                    <input type="text" id="recipient" class="input-field" 
+                           placeholder="Enter valid Ethereum wallet address (0x...)" required>
+                    <button type="button" id="burn-button" class="tertiary-button">Burn</button> <!-- Burn button -->
+                </div>
+            </div>
+          
+            <button type="button" id="transfer-button" class="primary-button">Transfer</button>
+            <button type="button" id="cancel-button" class="secondary-button" onclick="window.location.href='gallery.html'">Cancel</button>
+        </form>
+
+        <!-- Spinner -->
+        <div id="loading" class="loading-spinner" style="display: none;">Transferring...</div>
+
+        <!-- Transfer Status -->
+        <div id="transfer-status" class="status-text" style="display: none;"></div>
+    </main>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Web3.js and Custom Script -->
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.9.0/dist/web3.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
