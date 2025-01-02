@@ -1,0 +1,45 @@
+.nft-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.nft-grid > div {
+    text-align: center;
+    margin: auto 30px;
+    border-radius: 20px
+}
+
+.nft-grid > div > a > img {
+    border-radius: 20px;
+}
+
+.nft-grid > div > a > img:hover{
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    cursor: pointer;
+}
+
+.wallet-display{
+    background-color: rgba(200, 192, 255, 0.9);
+}
+
+#wallet-amount{
+    font-size: 20px;
+    text-align: right;
+    margin-right: 60px;
+}
+
+#my-wallet{
+    font-size: 20px;
+    float: left;
+    width: 40%;
+    margin-left: 60px;
+    border-right: 2px solid black;
+}
+
+h1{
+    margin: 20px auto auto 20px;
+}

@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mint NFT - NFT Platform</title>
-    <link rel="stylesheet" href="/CSS/styles.css">
-    <link rel="stylesheet" href="/CSS/mint.css">
-    <link rel="stylesheet" href="/CSS/wallet.css">
+    <link rel="stylesheet" href="D:/My Downloads/NFT/CSS/styles.css">
+    <link rel="stylesheet" href="D:/My Downloads/NFT/CSS/mint.css">
+    <link rel="stylesheet" href="D:/My Downloads/NFT/CSS/wallet.css">
 </head>
 <body class="purple-theme">
     <header class="navbar">
-        <a href="landing.html"><img class="logo" width="70px" src="/img:icon/Logo.png" alt="Logo"></a>
+        <a href="landing.html"><img class="logo" width="70px" src="D:/My Downloads/NFT/img_icon/Logo.png" alt="Logo"></a>
         <nav class="nav-links">
           <a class="navigate" href="landing.html">Home</a>
           <a class="navigate-active" href="mint.html">Mint NFT</a>
@@ -28,7 +28,9 @@
       </header>
 
     <main class="container">
-        <h1>Mint Your NFT</h1>
+        <div class="h1class">
+            <h1>Mint Your NFT</h1><hr>
+        </div>
         <div class="mint-form">
             <div class="form-group">
                 <label for="nft-name">NFT Name</label>
@@ -41,40 +43,12 @@
             </div>
 
             <div class="form-group">
-                <label for="nft-collection">NFT Collection</label>
-                <select id="nft-collection" required class="input-field">
-                    <option>My Default</option>
-                </select>
-                <a href="#wallet">New Collection</a>
-            </div>
-
-            <div class="form-group">
-            </div>
-
-            <div class="form-group">
-                <label for="nft-royalty">Royalty Percent(%)</label>
-                <input type="number" id="nft-royalty" required class="input-field" step="0.01" max="10.0" min="0.0"/>
-            </div>
-
-            <div class="form-group">
-                <label for="nft-url">External URL</label>
-                <input type="url" id="nft-url" class="input-field" placeholder="Enter External URL"/>
-            </div>
-
-            <div id="drop-zone" class="drop-zone">
-                <p>Drag and drop your image here or</p>
-                <input type="file" id="file-picker" accept="image/*" class="file-input" />
-                <p class="file-name" id="file-name"></p>
-            </div>
-
-            <div class="form-group">
-                <label for="nft-value">Value</label>
-                <input type="number" id="nft-value" required class="input-field" step="0.01" min="0.0"/>
-            </div>
-
-            <div class="form-group">
-                <label for="nft-amount">Amount</label>
-                <input type="number" id="nft-amount" required class="input-field" step="0.01" min="0.0"/>
+                <label for="nft-image">Your NFT Image</label>
+                <div id="drop-zone" class="drop-zone">
+                    <p>Drag and drop your image here or</p>
+                    <input type="file" id="file-picker" accept="image/*" class="file-input" />
+                    <p class="file-name" id="file-name"></p>
+                </div>
             </div>
             
             <button id="mint-button" class="primary-button">Submit</button>
@@ -84,9 +58,9 @@
     </main>
     <footer class="footer">
         <div class="social-media-icons">
-                <a href="https://www.facebook.com" target="_blank" class="social-icon"><img width="70px" src="/img:icon/fb.png"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com" target="_blank" class="social-icon"><img width="50px" src="/img:icon/ig.png"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.youtube.com" target="_blank" class="social-icon"><img width="65px" src="/img:icon/yt.png"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.facebook.com" target="_blank" class="social-icon"><img width="70px" src="D:/My Downloads/NFT/img_icon/fb.png"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com" target="_blank" class="social-icon"><img width="50px" src="D:/My Downloads/NFT/img_icon/ig.png"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com" target="_blank" class="social-icon"><img width="65px" src="D:/My Downloads/NFT/img_icon/yt.png"><i class="fab fa-youtube"></i></a>
                 <a href="https://twitter.com" target="_blank" class="social-icon"><img width="40px" src="https://www.edigitalagency.com.au/wp-content/uploads/new-Twitter-logo-x-black-png-900x920.png"><i class="fab fa-twitter"></i></a>
         </div>
     
@@ -114,10 +88,10 @@
             assets on a secure, user-friendly
             platform. Join us to explore and own</br>
             one-of-a-kind digital creations.</p>
-            <img class="footerLogo" width="200px" src="/img:icon/Logo.png">
+            <img class="footerLogo" width="200px" src="D:/My Downloads/NFT/img_icon/Logo.png">
     </footer> 
     <script src="https://cdn.jsdelivr.net/npm/web3@1.9.0/dist/web3.min.js"></script>
-    <script src="/JS/script.js"></script>
-    <script src="/JS/newcollection.js"></script>
+    <script src="D:/My Downloads/NFT/JS/script.js"></script>
+    <script src="D:/My Downloads/NFT/JS/newcollection.js"></script>
 </body>
 </html>
