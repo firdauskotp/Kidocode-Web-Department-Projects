@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script src="/static/js/add-to-cart.js"></script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <link rel="icon" type="image/x-icon" href="/static/images/kidocode_symbol_logo.png">
+        <title>Shop Homepage - Kidocode</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+        <link href="/static/css/main.css" rel="stylesheet">
+        <link href="/static/css/product.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="main-wrapper d-flex flex-column min-wh-100">
+            <div class="content flex-grow-1">
+                {% include 'navbar.html' %}
+                <div class="container track-container">
+                    <h2 class="title">Track Your Order(s)</h2>
+                    {% include '/user/alert.html' %}
+                    <form method="POST" class="mt-4" id="orderForm">
+                        <div class="mb-3">
+                            <label for="order_ids" class="form-label fs-4">Enter Order ID(s):</label>
+                            <input type="text" class="form-control" id="order_ids" name="order_ids" placeholder="Enter comma-separated Order IDs (e.g., ORD123, ORD456)">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Track Order</button>
+                    </form>
+                    {% if order_details %}
+                        <h3 class="mt-4">Order Details</h3>
+                        <div class="accordion" id="ordersAccordion">
+                            {% for order_detail in order_details %}
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="heading-{{ order_detail.order.orderID }}">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ order_detail.order.orderID }}" aria-expanded="false" aria-controls="collapse-{{ order_detail.order.orderID }}">
+                                        Order ID: {{ order_detail.order.orderID }}
+                                    </button>
+                                </h2>
+                                <div id="collapse-{{ order_detail.order.orderID }}" class="accordion-collapse collapse" aria-labelledby="heading-{{ order_detail.order.orderID }}" data-bs-parent="#ordersAccordion">
+                                    <div class="accordion-body">
+                                        <p><i class="bi bi-info-circle me-2"></i><strong>Status:</strong> {{ order_detail.order.status|capitalize }}</p>
+                                        <p><i class="bi bi-truck me-2"></i><strong>Shipping Method:</strong> {{ order_detail.order.shippingMethod }}</p>
+                                        <p><i class="bi bi-geo me-2"></i><strong>Pickup Location:</strong> {{ order_detail.order.dropLocation or 'Not applicable' }}</p>
+                                        <p><i class="bi bi-calendar me-2"></i><strong>Date:</strong> {{ order_detail.order.createdAt.strftime('%d %b %Y %I:%M %p') }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="container">
+                    <h2 class="title">Look at this!</h2>
+                    <p class="fs-3 fst-italic text-center">Maybe you have some of this products in mind?</p>
+                    {% include '/user/product-random.html' %}
+                </div>
+            </div>
+            {% include 'footer.html' %}
+        </div>
+        {% include '/user/product.html' %}
+        {% include '/user/notification.html' %}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script>
+            window.onload = function() {
+                document.getElementById("orderForm").reset;
+            }
+        </script>
+    </body>
+</html>

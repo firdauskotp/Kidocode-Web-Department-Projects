@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+    {% include "/admin/index.html" %}
+
+    <div class="container my-5">
+        <h1 class="text-primary">Dashboard</h1>
+
+        <div class="row">
+            <div class="col-lg-2 col-12 my-2">
+                <div class="alert alert-primary mb-2 p-2 w-100">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-person-fill mx-3 fs-1"></i>
+                        <div>
+                            <div class="text-center fw-bold">Customer</div>
+                            <div class="text-center">{{ customer_count }}</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="alert alert-primary mb-2 p-2 w-100">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-boxes mx-3 fs-1"></i>
+                        <div>
+                            <div class="text-center fw-bold">Product</div>
+                            <div class="text-center">{{ product_count }}</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="alert alert-primary mb-2 p-2 w-100">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-check-circle mx-3 fs-1"></i>
+                        <div>
+                            <div class="text-center fw-bold">Item sold</div>
+                            <div class="text-center">{{ total_item_sold }}</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="alert alert-primary mb-2 p-2 w-100">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-cash-stack mx-3 fs-1"></i>
+                        <div>
+                            <div class="text-center fw-bold">Total sale</div>
+                            <div class="text-center">RM{{ total_payment_amount }}</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="alert alert-primary mb-2 p-2 w-100">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-star-fill mx-3 fs-1"></i>
+                        <div>
+                            <div class="text-center fw-bold">Reviews</div>
+                            <div class="text-center">{{ review_count }}</div>
+                        </div>
+                    </div>
+                </div>                      
+            </div>
+            
+            <div class="col-lg-10 col-12">
+                <div class="chart-container overflow-auto" style="max-height: 400px;">
+                    <div class="mb-5">
+                        <h2 class="text-center">Customers Data</h2>
+                        <canvas id="customerdata" height="100px"></canvas>
+                    </div>
+    
+                    <div class="mb-5">
+                        <h2 class="text-center">Sale Data</h2>
+                        <canvas id="saledata" height="100px"></canvas>
+                    </div>
+    
+                    <div class="mb-5">
+                        <h2 class="text-center">Reviews</h2>
+                        <div class="chart-container mx-auto" style="width: 500px; height: 500px;">
+                            <canvas id="reviewdata"></canvas>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const custlabels = {{ custlabels|tojson }};
+        const custdata = {{ custdata|tojson }};
+    
+        const custctx = document.getElementById('customerdata').getContext('2d');
+        new Chart(custctx, {
+            type: 'line',
+            data: {
+                labels: custlabels,
+                datasets: [{
+                    label: 'Customers registered',
+                    data: custdata,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderWidth: 2,
+                    tension: 0.4,
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {legend: {display: false, position: 'top'}},
+                scales: {y: {beginAtZero: true}},
+            },
+        });
+    
+        const salelabels = {{ salelabels|tojson }};
+        const saledataArray = {{ saledata|tojson }};
+    
+        const salectx = document.getElementById('saledata').getContext('2d');
+        new Chart(salectx, {
+            type: 'bar',
+            data: {
+                labels: salelabels,
+                datasets: [{
+                    label: 'Products sold',
+                    data: saledataArray,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderWidth: 2,
+                    tension: 0.4,
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {legend: {display: false, position: 'top'}},
+                scales: {y: {beginAtZero: true}},
+            },
+        });
+
+        const reviewlabels = {{ reviewlabels|tojson }}.map(label => `${label} ★`);
+        const reviewdata = {{ reviewdata|tojson }};
+    
+        const reviewctx = document.getElementById('reviewdata').getContext('2d');
+        new Chart(reviewctx, {
+            type: 'pie',
+            data: {
+                labels: reviewlabels,
+                datasets: [{
+                    label: 'Total review',
+                    data: reviewdata,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(54, 162, 235, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(54, 162, 235, 1)'
+                    ],
+                    borderWidth: 2,
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {legend: {display: true, position: 'right'}},
+                layout: {padding: 10}
+            },
+        });
+    </script>
+</body>
+</html>

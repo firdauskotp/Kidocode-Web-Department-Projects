@@ -1,0 +1,308 @@
+/* For 'homepage' Alert Logout */
+#alert-container {
+    position: fixed;
+    top: 50px;
+    right: 50%;
+    z-index: 1055;
+    width: auto;
+    max-width: 300px;
+    pointer-events: none;
+    padding-top: 1rem;
+}
+
+#alert-container .alert-container {
+    pointer-events: auto;
+    max-width: 100%;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .alert-container {
+        top: 1rem;
+        right: 1rem;
+        left: auto;
+        transform: translateX(50%);
+        max-width: 90%;
+        padding-top: 0;
+    }
+}
+/* */
+
+/* For the 'Credits' */
+#team-container {
+    padding: 50px 0;
+    text-align: center;
+}
+
+#team-container .card {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10px;
+    position: relative;
+}
+
+#team-container .card::before {
+    content: '';
+    position: absolute;
+    margin: auto;
+    inset: 0;
+    left: -10px;
+    width: calc(100% + 20px);
+    height: 465px;
+    border-radius: 10px;
+    background: linear-gradient(-45deg, #A7E6FF 0%, #3572EF 100% );
+    z-index: -10;
+    pointer-events: none;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-origin: center;
+}
+
+#team-container .card::after {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(-45deg, #A7E6FF 0%, #3572EF 100% );
+    transform: translate3d(0, 0, 0) scale(0.95);
+    filter: blur(20px);
+}
+
+#team-container .card:hover::after {
+    filter: blur(30px);
+}
+
+#team-container .card:hover::before {
+    transform: rotate(-90deg) scaleX(1.453125) scaleY(0.69);
+}
+
+#team-container .team-member {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    margin: 15px auto;
+    border: 4px solid #050C9C;
+}
+
+#team-container .member-1 {
+    background-image: url('/static/images/credits/sarah(1).jpg');
+}
+#team-container .uni-logo-1 {
+    background-image: url('/static/images/credits/sarah(2).png')
+}
+#team-container .member-2 {
+    background-image: url('/static/images/credits/nicholas(1).jpg');
+}
+#team-container .uni-logo-2 {
+    background-image: url('/static/images/credits/nicholas(2).png')
+}
+#team-container .member-3 {
+    background-image: url('/static/images/credits/izzati(1).jpg');
+}
+#team-container .uni-logo-3 {
+    background-image: url('/static/images/credits/izzati(2).png')
+}
+
+#team-container .uni-logo-1,
+#team-container .uni-logo-2,
+#team-container .uni-logo-3 {
+    display: block;
+    width: 80px;
+    height: 50px;
+    margin: 10px auto 3px auto;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#team-container .card-title {
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #1d4ed8;
+    padding: 10px 0 10px 0;
+}
+
+#team-container .card-text {
+    font-size: 1.25rem;
+    color: #555;
+}
+
+#team-container .uni-name {
+    margin-bottom: 30px;
+}
+
+#team-container .project-role {
+    position: absolute;
+    bottom: 10px;
+    left: 15px;
+    font-weight: bold;
+    font-size: 1.25rem;
+    background: linear-gradient(90deg, #3ABEF9, #A7E6FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0px 0px 20px #3572EF;
+    display: inline-block;
+}
+
+@media (max-width: 768px) {
+    #team-container .team-container {
+        text-align: center;
+    }
+    #team-container .uni-logo-1,
+    #team-container .uni-logo-2,
+    #team-container .uni-logo-3 {
+        width: 60px;
+        height: 30px;
+    }
+}
+/* */
+
+/* For the 'Footer' */
+.main-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content {
+    flex-grow: 1;
+}
+/* */
+
+/* For the 'Track Order' */
+.track-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.form-container {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+/* */
+
+/* For the 'Help' Section */
+.help-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+/* */
+
+/* Heading Text */
+.title {
+    text-align: center;
+    color: #1d4ed8; 
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+/* */
+
+/* Sub Heading Text */
+/* ADD HERE */
+
+/* Product Image Card */
+/* ADD HERE */
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+/* For the 'My Purchases' */
+.actionBtn-container {
+    gap: 10px;
+}
+/* */
+
+/* For the Homepage 'Review' section */
+.testimonials-section img {
+    border: 2px solid #ddd;
+    padding: 5px;
+    background-color: #fff;
+}
+.testimonials-section .card {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+.testimonials-section .card:hover {
+    transform: scale(1.05);
+}
+/* */
+
+/* IDK wat this */
+.section-box {
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+/* .purchase-card {
+    border-radius: 15px;
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.status-pending {
+    color: #ff8800;
+    font-weight: bold;
+}
+
+.status-successful {
+    color: #28a745;
+    font-weight: bold;
+} */
+
+/* For the 'All Products' Category */
+.accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* I think still for the 'All Product' Category */
+.accordion-button {
+    flex-grow: 1;
+}
+
+.status-badge {
+    font-size: 0.85rem;
+}
+/* */
+
+/* For the User 'My Purchases' */
+.navbar-status {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
+    font-size: medium;
+}
+
+.status-bg {
+    color: white;
+}
+/* */
+
+/* For the 'Contact Us' */
+.info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+/* */

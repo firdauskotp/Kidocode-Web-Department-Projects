@@ -1,0 +1,86 @@
+<style>
+    #testimonialsSection .carousel .card {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    #testimonialsSection .carousel .card:hover {
+        transform: scale(1.05);
+    }
+
+    #testimonialsSection .carousel-inner {
+        text-align: center;
+    }
+
+    #testimonialsSection .carousel-inner img {
+        border: 2px solid #ddd;
+        padding: 5px;
+        background-color: #fff;
+    }
+</style>
+<section id="testimonialsSection" class="testimonials-section bg-light my-5">
+    <div class="container">
+        <h2 class="title mb-4 p-3">Reviews</h2>
+        <p class="fs-5 fst-italic text-secondary text-center">Some quotes from our happy Users</p>
+        
+        <!-- Carousel for Mobile -->
+        <div id="testimonialsCarousel" class="carousel carousel-dark slide d-md-none" data-bs-ride="carousel" data-bs-interval="5000">
+            <div class="carousel-inner">
+                {% for review in review %}
+                {% if loop.index <= 3 %}
+                <div class="carousel-item {% if loop.first %}active{% endif %}">
+                    <div class="card border-0 text-center mx-auto mb-3" style="max-width: 300px;">
+                        <div class="card-body">
+                            <img src="https://via.placeholder.com/50" class="rounded-circle mb-3">
+                            <p>“{{ review.comment }}”</p>
+                            <h5 class="card-title">{{review.user.firstName}}</h5>
+                            <div>
+                                {% for i in range(review.rating) %}
+                                <i class="bi bi-star-fill text-warning"></i>
+                                {% endfor %}
+                                {% for i in range(5 - review.rating) %}
+                                <i class="bi bi-star text-warning"></i>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#testimonialsCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#testimonialsCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+        <!-- Grid for Desktop -->
+        <div class="row g-4 d-none d-md-flex">
+            {% for review in review %}
+            {% if loop.index <= 3 %}
+            <div class="col-md-4">
+                <div class="card border-0 text-center">
+                    <div class="card-body">
+                        <img src="https://via.placeholder.com/50" class="rounded-circle mb-3">
+                        <p>“{{ review.comment }}”</p>
+                        <h5 class="card-title">{{review.user.firstName}}</h5>
+                        <div>
+                            {% for i in range(review.rating) %}
+                            <i class="bi bi-star-fill text-warning"></i>
+                            {% endfor %}
+                            {% for i in range(5 - review.rating) %}
+                            <i class="bi bi-star text-warning"></i>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>

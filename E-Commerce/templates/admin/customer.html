@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin - Customer</title>
+    </head>
+    <body>
+        {% include "/admin/index.html" %}
+        <div class="container my-5">
+            <h1 class="text-primary">Customers</h1>
+        
+            <!-- Search Form -->
+            <div class="d-flex align-items-center my-3">
+                <form class="d-flex w-100 align-items-center" action="/admin/customer" method="get">
+                    <div class="flex-grow-1 me-2">
+                        <input type="text" class="form-control" name="searchCust" placeholder="Search" value="{{ request.args.get('searchCust', '') }}">
+                    </div>
+                    <button class="btn btn-outline-primary d-flex align-items-center me-2 px-3" type="submit" name="btnSearch">
+                        <i class="bi bi-search me-2"></i> Search
+                    </button>
+                </form>
+            </div>
+            {% include "alert.html" %}
+            <!-- Customers Table -->
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Customer ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Address</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in user %}
+                            <tr>
+                                <form action="customer" method="post">
+                                    <td>{{ user.userID }}</td>
+                                    <td>{{ user.firstName }} {{ user.lastName }}</td>
+                                    <td>{{ user.email }}</td>
+                                    <td>{{ user.phone }}</td>
+                                    <td>{{ user.address }}</td>
+                                    <td>
+                                        <button class="btn btn-outline-secondary hover-effect" name="btnmail" value="{{ user.email }}">
+                                            <i class="bi bi-envelope"></i>
+                                        </button>
+                                    </td>
+                                </form>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>        
+    </body>
+</html>

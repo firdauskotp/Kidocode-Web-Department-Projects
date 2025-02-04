@@ -1,0 +1,153 @@
+<style>
+    .footer-container {
+        background-color: #000000; 
+        color: #f5f5f5;
+        border-radius: 0;
+        width: 100%;
+        padding: 100px 60px;
+        font-size: 14px;
+        position: relative;
+        overflow: hidden;
+        margin-top: auto;
+    }
+
+    .footer-content {
+        max-width: 1100px;
+        padding: 0 0 30px 0;
+    }
+
+    .footer-logo img {
+        filter: brightness(0) invert(1);
+        width: 200px; 
+        margin-bottom: 15px;
+    }
+
+    .company-description {
+        margin-top: 0;
+        padding-top: 20px;
+        padding-right: 30px;
+    }
+
+    .text-block {
+        color: #d5d5d5;
+        letter-spacing: -.03em;
+        font-size: 16px;
+        line-height: 26px;
+    }
+
+    .footer-section h5 {
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .footer-section a {
+        color: #f5f5f5;
+        text-decoration: none;
+        display: block;
+        padding: 5px 0;
+    }
+
+    .footer-section a:hover {
+        color: #cccccc; 
+        text-decoration: underline;
+    }
+
+    .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #5c5c5c;
+        border-top: 1px solid #5c5c5c;
+        padding: 30px 0;
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+
+    .copyright-container {
+        font-size: 14px;
+        margin-left: auto;
+        text-align: right;
+    }
+
+    /* Mobile View Enhancements */
+    @media (max-width: 768px) {
+        .footer-container {
+            text-align: left;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 72px 20px;
+        }
+
+        .company-description {
+            padding-top: 20px;
+            padding-right: 0;
+        }
+
+        .footer-top-line,
+        .footer-bottom-line {
+            margin-bottom: 10px;
+        }
+
+        .footer-section h5 {
+            font-size: 1.2rem;
+        }
+
+        .footer-section a {
+            font-size: 1rem;
+        }
+    }
+
+    /* Small screen (very mobile devices) */
+    @media (max-width: 480px) {
+        .footer-logo img {
+            width: 150px;
+        }
+
+        .company-description {
+            padding-top: 20px;
+            padding-right: 0;
+        }
+    }
+</style>
+<footer class="footer-container">
+    <div class="footer-content mx-auto position-relative">
+        <div class="row">
+            <div class="footer-logo col-md-5">
+                <a href="https://www.kidocode.com/">
+                    <img src="{{ url_for('static', filename='images/kidocode_logo.png') }}" alt="Kidocode Logo">
+                </a>
+                <div class="company-description">
+                    <div class="text-block">
+                        Kidocode is a school of technology and entrepreneurship for K-12 students. Our community is driven to rebuild the education system for the modern era with a combination of AI-empowered tools, top-notch educators, and in-demand campus facilities.
+                    </div>
+                </div>
+            </div>
+            <div class="footer-section col-md-2 mx-auto">
+                <h5>Discovery</h5>
+                <a href="/allproducts" class="text-reset">Products</a>
+                <a href="/user/purchases" class="text-reset">My Purchases</a>
+                <a href="/trackorder" class="text-reset">Track Order</a>
+                <a href="#!" class="text-reset">About Us</a>
+            </div>
+            <div class="footer-section col-md-2 mx-auto">
+                <h5>Services</h5>
+                <a href="/helpform" class="text-reset">Help & Support</a>
+                <a href="#!" class="text-reset">Return Policy</a>
+                <a href="#!" class="text-reset">Domestic Shipping</a>
+                <a href="#!" class="text-reset">Career</a>
+            </div>
+            <div class="footer-section col-md-2 mx-auto">
+                <h5>Information</h5>
+                <a href="/info?section=faq" class="text-reset">FAQ</a>
+                <a href="/info?section=privacy" class="text-reset">Privacy Policies</a>
+                <a href="/info?section=terms" class="text-reset">Terms & Conditions</a>
+                <a href="#!" class="text-reset">Site Credits</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="copyright-container">
+            <a class="text-reset fw-normal text-decoration-none" href="https://www.kidocode.com/">© 2025 All Rights Reserved. Kidocode Sdn Bhd (1133758-X) | 201501008423(1133758-X)</a>
+        </div>
+    </div>
+</footer>

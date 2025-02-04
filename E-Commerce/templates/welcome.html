@@ -1,0 +1,82 @@
+<style>
+    .hero-section {
+        background-image: url('../static/images/bg_kidocode.png'); 
+        background-size: cover; 
+        background-position: center center; 
+        background-repeat: no-repeat; 
+        height: 100vh; 
+        display: flex; 
+        justify-content: center; 
+        align-items: center;
+        padding: 20px;
+        position: relative; 
+        overflow: hidden; 
+        background-color: #f5f5f5;
+    }
+
+    .hero-card {
+        z-index: 2;
+        text-align: center;
+        color: #fff;
+        background-color: rgba(0, 0, 0, 0.6);
+        padding: 30px 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        max-width: 600px;
+        width: 90%;
+    }
+
+    .hero-card h1 {
+        font-size: clamp(2rem, 5vw, 3rem);
+        margin-bottom: 15px;
+    }
+
+    .hero-card p {
+        font-size: clamp(1rem, 4vw, 1.5rem);
+        margin-bottom: 25px;
+    }
+
+    .hero-btn {
+        font-size: clamp(1rem, 3vw, 1.5rem); 
+        padding: 10px 20px; 
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        border-color: #0056b3;
+        transition: background-color 0.3s ease;
+    }
+
+    .hero-btn:hover {
+        background-color: #0056b3;
+        -webkit-transform: translateY(-0.33em);
+        -ms-transform: translateY(-0.33em);
+        transform: translateY(-0.33em);
+    }
+
+    /* Parallax Background Effect */
+    @media (min-width: 768px) {
+        .hero-section {
+            background-attachment: fixed;
+        }
+    }
+
+    /* For smaller screens, use a mobile-friendly background image */
+    @media (max-width: 767px) {
+        .hero-section {
+            background-image: url('../static/images/bg_kidocode.png');
+            background-size: cover;
+            background-position: center center;
+            height: auto;
+        }
+    }
+</style>
+<div class="hero-section">
+    <div class="hero-card">
+        <h1>Welcome to Kidocode Shop</h1>
+        <p>All items for your child’s learning and development, hand-picked by the Kido Team.</p>
+        <a href="{{ url_for('all_products') }}" class="btn btn-primary hero-btn">
+            Look at all the cool new stuff!
+        </a>
+    </div>
+</div>

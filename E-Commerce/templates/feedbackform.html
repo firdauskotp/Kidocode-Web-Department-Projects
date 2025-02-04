@@ -1,0 +1,43 @@
+<div class="form-container my-5">
+    <section id="contact">
+        <h2 class="title mb-4 p-3">Feedback</h2>
+            <p class="fs-5 fst-italic text-secondary text-center">You faced an issue or just wanted to leave a feedback? Contact us directly...</p>
+            {% include "alert.html" %}
+            <div class="row justify-content-center mt-3">
+                <div class="col-9">
+                    <form action="/feedbackform" method="POST">
+                        <label for="email" class="form-label">Email Address</label>
+                        <div class="mb-4 input-group">
+                            <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
+                            <input type="email" id="email" name="f_email" placeholder="Enter Your Email Address" class="form-control" required>
+                        </div>
+                        <label for="name" class="form-label">Name</label>
+                        <div class="mb-4 input-group">
+                            <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+                            <input type="text" id="name" name="f_name" placeholder="Enter Your Name" class="form-control" required>
+                        </div>
+                        <label for="subject" class="form-label">What is your feedback about?</label>
+                        <div class="mb-4 input-group">
+                            <span class="input-group-text"><i class="bi bi-chat-right-dots-fill"></i></span>
+                            <select name="f_type" id="subject" class="form-select" required>
+                                <option value="" selected disabled>Query Topic:</option>
+                                <option value="Bug">Bug</option>
+                                <option value="Suggestion">Suggestion</option>
+                                <option value="Complaint">Complaint</option>
+                                <option value="Praise">Praise</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-floating mb-4 mt-5">
+                            <textarea name="f_text" id="query" class="form-control" style="height: 140px;" required></textarea>
+                            <label for="query">Write Your Query...</label>
+                        </div>
+                        <div class="mb-4 text-center">
+                            <button type="submit" name="btnsend" class="btn btn-primary w-100">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

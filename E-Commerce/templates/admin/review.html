@@ -1,0 +1,90 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin - Review</title>
+    </head>
+    <body>
+        {% include "/admin/index.html" %}
+        <div class="container my-5">
+            <h1 class="text-primary">Review</h1>
+
+            <form action="/admin/review" method="get" class="mb-4">
+                <div class="d-flex w-100 align-items-center my-3">
+                    <div class="flex-grow-1 me-2">
+                        <input type="text" class="form-control" name="searchReview" placeholder="Search" value="{{ request.args.get('searchReview', '') }}">
+                    </div>
+                    <button class="btn btn-outline-primary d-flex align-items-center me-2 px-3" type="submit">
+                        <i class="bi bi-search me-2"></i> Search
+                    </button>
+                </div>
+            
+                <div class="my-3">
+                    <button type="submit" name="ratingSearch" value="" class="btn btn-outline-warning">All Ratings</button>
+                    <button type="submit" name="ratingSearch" value="5" class="btn btn-outline-warning text-light-hover">5 <i class="bi bi-star-fill"></i></button>
+                    <button type="submit" name="ratingSearch" value="4" class="btn btn-outline-warning">4 <i class="bi bi-star-fill"></i></button>
+                    <button type="submit" name="ratingSearch" value="3" class="btn btn-outline-warning">3 <i class="bi bi-star-fill"></i></button>
+                    <button type="submit" name="ratingSearch" value="2" class="btn btn-outline-warning">2 <i class="bi bi-star-fill"></i></button>
+                    <button type="submit" name="ratingSearch" value="1" class="btn btn-outline-warning">1 <i class="bi bi-star-fill"></i></button>
+                </div>            
+            </form>
+            
+            {% include "alert.html" %}
+            <!-- Display reviews in cards -->
+            <div class="row">
+                {% for review in review %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="/admin/review" method="post">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://via.placeholder.com/50" class="rounded-circle mb-3 me-3" alt="User Image">
+                                    <h5 class="card-title"><strong>{{ review.user.firstName }} {{ review.user.lastName }}</strong></h5>
+                                </div>
+                                
+                                <!-- Display star rating -->
+                                <p class="card-text">
+                                    {% for i in range(review.rating) %}
+                                        <span class="text-warning"><i class="bi bi-star-fill"></i></span>
+                                    {% endfor %}
+                                    {% for i in range(5 - review.rating) %}
+                                        <span class="text-muted"><i class="bi bi-star"></i></span>
+                                    {% endfor %}
+                                </p>
+            
+                                <!-- Review comment -->
+                                <p class="card-text">Product: {{ review.product.productName }}</p>
+                                <p class="card-text">{{ review.comment }}</p>
+
+                                {% if review.response is none %}
+                                    <div class="d-flex align-items-center my-3">
+                                        <div class="flex-grow-1 me-2">
+                                            <input type="text" class="form-control" name="reply" placeholder="Write a reply">
+                                        </div>
+                                        <button class="btn btn-outline-primary d-flex align-items-center me-2 px-3" type="submit" name="btnsend" value="{{ review.reviewID }}">
+                                            <i class="bi bi-send me-2"></i>Reply
+                                        </button>
+                                    </div>
+                                    {% else %}
+                                    <div class="d-flex align-items-center my-3">
+                                        <div class="flex-grow-1 me-2">
+                                            <input type="text" class="form-control" name="reply" value="{{review.response}}">
+                                        </div>
+                                        <button type="submit" class="btn btn-outline-danger mx-1" name="btndelete" value="{{ review.reviewID }}">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                        <button type="submit" class="btn btn-outline-success mx-1" name="btnsend" value="{{ review.reviewID }}">
+                                            <i class="bi bi-send"></i>
+                                        </button>
+                                    </div>
+                                    {% endif %}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+    </body>
+</html>

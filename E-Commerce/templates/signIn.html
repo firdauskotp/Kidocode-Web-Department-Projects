@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<script src="/static/js/add-to-cart.js"></script>
+		<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<link rel="icon" type="image/x-icon" href="/static/images/kidocode_symbol_logo.png">
+		<title>Shop Sign In - Kidocode</title>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+		<link href="{{ url_for('static', filename='css/main.css')}}" rel="stylesheet">
+		<link href="{{ url_for('static', filename='css/login.css')}}" rel="stylesheet">
+  	</head>
+    <body>
+		<div class="container">
+			<div class="mx-auto mb-5">
+			<a href="{{ url_for('user.homepage') if session.get('email') else url_for('home') }}" class="navbar-brand d-flex align-items-center mx-3" href="#">
+				<img src="/static/images/kidocode_logo.png" height="40" alt="Kidocode Logo">
+				<span class="ms-2 fw-bold text-primary">Sign In</span>
+			</a>
+			</div>
+			<form action="/login" method = "POST">
+			<div class="mb-5">
+				<input type="email" class="form-control form-control-lg" id="email" placeholder="Email" name="email" required>
+			</div>
+			<div class="mb-5">
+				<div class="input-group">
+				<input type="password" class="form-control form-control-lg" id="password" placeholder="Password" name="password" required>
+				<span class="input-group-text eye-icon" onclick="togglePassword()">
+					<i class="bi bi-eye-slash" id="togglePasswordIcon"></i>
+				</span>
+				</div>
+			</div>
+			<div class="d-grid mb-3">
+				<button type="submit" class="btn btn-primary btn-lg">Sign In</button>
+			</div>
+			<div class="text-center forgotPass mb-3">
+				<a href="{{ url_for('forgotpass') }}">Forgot password?</a>
+			</div>
+			</form>
+			{% include '/user/alert.html' %}
+			<!--<div class="text-center my-3">
+			<span>OR</span>
+			</div>
+			<div class="d-grid">
+			<a href="#" class="btn btn-outline-primary">Sign in with Google</a>
+			</div>-->
+			<div class="line"></div>
+			<div class="d-flex justify-content-center">
+			<a href="{{ url_for('register') }}" class="btn btn-success btn-lg"> Sign Up and Shop!</a>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    </body>
+</html>

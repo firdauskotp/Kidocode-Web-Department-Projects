@@ -1,0 +1,47 @@
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	background-color: #f8f9fa;
+	margin: 0;
+}
+
+.container {
+	max-width: 400px;
+	background: white;
+	padding: 3rem;
+	border-radius: 8px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.forgot-container {
+	max-width: 600px;
+	background: white;
+	padding: 3rem;
+	border-radius: 8px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.eye-icon {
+	cursor: pointer;
+}
+
+.forgotPass a {
+	color: #1d4ed8;
+	text-decoration: none;
+	cursor: pointer;
+	font-size: 14px;
+}
+
+.forgotPass a:hover {
+	text-decoration: underline;
+}
+
+.line {
+	align-items: center;
+	border-bottom: 1px solid #d5d5d5;
+	display: flex;
+	text-align: center;
+	margin: 20px 0px;
+}

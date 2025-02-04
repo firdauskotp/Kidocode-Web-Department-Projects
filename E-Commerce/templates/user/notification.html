@@ -1,0 +1,76 @@
+<style>
+    .toast-container {
+        position: fixed;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1055;
+        width: auto;
+        max-width: 90%;
+        pointer-events: none;
+        padding-bottom: 1rem;
+    }
+
+    .toast {
+        pointer-events: auto;
+        max-width: 100%;
+        text-align: center;
+    }
+
+    @media (min-width: 768px) {
+        .toast-container {
+            bottom: 1rem;
+            right: 1rem;
+            left: auto;
+            transform: none;
+            max-width: 300px;
+            padding-bottom: 0;
+        }
+    }
+</style>
+<div id="toastContainer" class="toast-container">
+    <div class="toast" id="cartToast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <strong class="me-auto" id="toast-title">Notification</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body" id="toast-message">
+            
+        </div>
+    </div>
+</div>
+<script>
+    // Function to display the toast with a custom message
+    function showCartToast(title, message) {
+        const toastTitle = document.getElementById('toast-title');
+        const toastBody = document.getElementById('toast-message');
+        const toastElement = new bootstrap.Toast(document.getElementById('cartToast'), { delay: 5000 });
+
+        // Update the title and message of the toast
+        toastTitle.textContent = title || 'Notification';
+        toastBody.textContent = message || 'Your cart has been updated.';
+
+        // Show the toast
+        toastElement.show();
+    }
+
+    // Adjust toast position based on screen size
+    function adjustToastPosition() {
+        const toastContainer = document.getElementById('toastContainer');
+        if (window.innerWidth <= 768) {
+            // Mobile: Center the toast at the bottom
+            toastContainer.style.paddingBottom = '1rem';
+            toastContainer.classList.add('position-fixed');
+            toastContainer.classList.remove('position-absolute', 'start-50', 'translate-middle-x');
+        } else {
+            // Desktop: Move to bottom-right
+            toastContainer.style.paddingBottom = '0';
+            toastContainer.classList.add('position-fixed');
+            toastContainer.classList.remove('position-fixed', 'start-50', 'translate-middle-x');
+        }
+    }
+
+    // Adjust position on page load and window resize
+    window.addEventListener('load', adjustToastPosition);
+    window.addEventListener('resize', adjustToastPosition);
+</script>

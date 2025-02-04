@@ -1,0 +1,124 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin - Category</title>
+    </head>
+    <body class="bg-white text-dark">
+        {% include "/admin/index.html" %}
+
+        <div class="container my-5">
+            <h1 class="text-primary">Categories</h1>
+            <div class="d-flex align-items-center my-3">
+                <form class="d-flex w-100 align-items-center" action="/admin/category" method="get">
+                    <div class="flex-grow-1 me-2">
+                        <input type="text" class="form-control" name="searchCategory" placeholder="Search"
+                            value="{{ request.args.get('searchCategory', '') }}">
+                    </div>
+                    <button class="btn btn-outline-primary d-flex align-items-center me-2 px-3" type="submit" name="btnSearch">
+                        <i class="bi bi-search me-2"></i><span>Search</span>
+                    </button>
+                    <button class="btn btn-outline-primary d-flex align-items-center px-3" type="button" data-bs-toggle="modal" data-bs-target="#newCategory">
+                        <i class="bi bi-plus-circle me-2"></i><span>Add New</span>
+                    </button>
+                </form>
+            </div>
+            
+            {% include "alert.html" %}
+            <div class="accordion">
+                {% for category in main_categories %}
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading{{ category.categoryID }}">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ category.categoryID }}" aria-expanded="false" aria-controls="collapse{{ category.categoryID }}">
+                                <table style="width: 90%; border: none;">
+                                    <tr>
+                                        <form action="/admin/category" method="post">
+                                            <td class="col-lg-2">
+                                                    <button class="btn btn-outline-success hover-effect my-2" name="btnsave" value="{{category.categoryID}}" {% if category.subcategories %} disabled {% endif %}>
+                                                        <i class="bi bi-save"></i>
+                                                    </button>
+                                                    <button class="btn btn-outline-danger hover-effect my-2" name="btndelete" value="{{category.categoryID}}">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                            </td>
+                                            <td class="col-8"><input type="text" class="form-control" name="sc_name" value="{{ category.name }}"></td>
+                                            <td style="text-align: right; padding: 0; width: 20%;">{{ category.categoryID }}</td>
+                                        </form>
+                                    </tr>
+                                </table>
+                            </button>
+                        </h2>
+                        <div id="collapse{{ category.categoryID }}" class="accordion-collapse collapse" aria-labelledby="heading{{ category.categoryID }}" data-bs-parent="#categoryAccordion">
+                            <div class="accordion-body">
+
+                                {% if category.subcategories %}
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Name</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for subcategory in category.subcategories %}
+                                            <form action="/admin/category" method="post">
+                                                <tr>
+                                                    <td>{{ subcategory.categoryID }}</td>
+                                                    <td><input type="text" class="form-control" name="sc_name" value="{{ subcategory.name }}"></td>
+                                                    <td>
+                                                        <button class="btn btn-outline-danger hover-effect" name="btndelete" value="{{ subcategory.categoryID }}">
+                                                            <i class="bi bi-trash"></i>
+                                                        </button>
+                                                        <button class="btn btn-outline-success hover-effect" name="btnsave" value="{{subcategory.categoryID}}">
+                                                            <i class="bi bi-save"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </form>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                {% else %}
+                                    <p>No subcategories available.</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="modal fade" id="newcategory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add new category</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form action="/admin/category" method="post">
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="categoryName" class="form-label">Category Name</label>
+                                    <input type="text" class="form-control" id="categoryName" name="c_name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="categoryParent" class="form-label">Main Category</label>
+                                    <select name="c_type" class="form-select" aria-label="Main Category">
+                                        <option value="" selected>New Main Category</option>
+                                        {% for category in main_categories %}
+                                            <option value="{{ category.categoryID }}">{{ category.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" name="btnadd" class="btn btn-primary">Add</button>
+                            </div>
+                        </form>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

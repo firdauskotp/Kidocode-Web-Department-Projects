@@ -1,0 +1,146 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin - Order</title>
+    </head>
+    <body>
+        {% include "/admin/index.html" %}
+        <div class="container my-5">
+            <h1 class="text-primary">Orders</h1>
+        
+            <!-- Search Form -->
+             
+            <form action="/admin/order" method="get">
+                <!-- Search Form -->
+                <div class="d-flex w-100 align-items-center my-3">
+                    <div class="flex-grow-1 me-2">
+                        <input type="text" class="form-control" name="searchOrder" placeholder="Search" value="{{ request.args.get('searchOrder', '') }}">
+                    </div>
+                    <button class="btn btn-outline-primary d-flex align-items-center me-2 px-3" type="submit" name="btnSearch">
+                        <i class="bi bi-search me-2"></i> Search
+                    </button>
+                </div>
+            
+                <!-- Order Status Buttons Row -->
+                <div class="row my-3">
+                    <div class="col-sm-9">
+                        <form action="/admin/order" method="get" class="d-inline">
+                            <div class="me-2">
+                                <button type="submit" name="statusOrder" class="btn btn-primary text-light me-1">All</button>
+                                <button type="submit" name="statusOrder" value="Completed" class="btn btn-success text-light me-1">Completed</button>
+                                <button type="submit" name="statusOrder" value="Cancelled" class="btn btn-danger text-light me-1">Cancelled</button>
+                                <button type="submit" name="statusOrder" value="Pending" class="btn btn-secondary text-light me-1">Pending</button>
+                                <button type="submit" name="statusOrder" value="Processing" class="btn btn-secondary text-light me-1">Processing</button>
+                                <button type="submit" name="statusOrder" value="Shipped" class="btn btn-secondary text-light me-1">Shipped</button>
+                                <button type="submit" name="statusOrder" value="Ready" class="btn btn-secondary text-light me-1">Ready to picked up</button>
+                            </div>
+                        </form>
+                    </div>
+            
+                    <!-- Shipping Method Buttons Row -->
+                    <div class="col-sm-3 text-end">
+                        <form class="d-inline" action="/admin/order" method="get">
+                            <button type="submit" name="method" class="btn btn-primary">All</button>
+                            <button type="submit" name="method" value="Pick Up" class="btn btn-outline-primary">Pick Up</button>
+                            <button type="submit" name="method" value="Delivery" class="btn btn-outline-primary">Delivery</button>
+                        </form>
+                    </div>
+                </div>
+            </form>            
+            {% include "alert.html" %}
+            <div class="row">
+                {% for order in order %}
+                <div class="col-md-6 col-12 mb-3">
+                    <div class="card">
+                        <form action="/admin/order" method="post">
+                            <div class="card-header d-flex justify-content-between">
+                                <span class="my-1">
+                                    <strong><i class="bi bi-tag mx-2"></i></strong>ID : {{ order.orderID }}
+                                </span>
+                                <span>
+                                    <div class="d-flex align-items-center">
+                                        <select name="status" class="form-select form-select-sm rounded-pill w-auto">
+                                            <option value="completed" {% if order.status == 'completed' %}selected{% endif %}>
+                                                Completed
+                                            </option>
+                                            <option value="Cancelled" {% if order.status == 'cancelled' %}selected{% endif %}>
+                                                Cancelled
+                                            </option>
+                                            <option value="Processing" {% if order.status == 'processing' %}selected{% endif %}>
+                                                Processing
+                                            </option>
+                                            <option value="Shipped" {% if order.status == 'shipped' %}selected{% endif %}>
+                                                Shipped
+                                            </option>
+                                            <option value="Ready" {% if order.status == 'ready' %}selected{% endif %}>
+                                                Ready
+                                            </option>
+                                            <option value="Pending" {% if order.status == 'pending' %}selected{% endif %}>
+                                                Pending
+                                            </option>
+                                        </select>
+                                        <button class="btn btn-sm btn-outline-success hover-effect mx-3" name="btnsave" value="{{order.orderID}}">
+                                            <i class="bi bi-save"></i>
+                                        </button>
+                                    </div>
+                                </span>
+                            </div>
+                        </form>
+                        
+                        
+                        <div class="card-body">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>Name:</td>
+                                        <td>{{ order.user.firstName }} {{ order.user.lastName }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Drop Location:</td>
+                                        <td>{{ order.dropLocation }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Shipping Method:</td>
+                                        <td>{{ order.shippingMethod }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Date of Order:</td>
+                                        <td>{{ order.createdAt }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <hr>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Product Name</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in order.order_items %}
+                                    <tr>
+                                        <td>{{ item.product.productName }}</td>
+                                        <td>{{ item.quantity }}</td>
+                                        <td>{{ item.price }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    <tr>
+                                        <th colspan="2">Total Amount:</th>
+                                        <td>{{ order.totalAmount }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="card-footer text-muted">
+                            <span>Updated At: {{ order.updatedAt }}</span>
+                        </div>                         
+                    </div>
+                </div>
+                {% endfor %}
+            </div>  
+        </div>      
+    </body>
+</html>

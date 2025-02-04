@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="/static/js/add-to-cart.js" defer></script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <link rel="icon" type="image/x-icon" href="/static/images/kidocode_symbol_logo.png">
+        <title>Shop Checkout - Kidocode</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+        <link href="/static/css/main.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container my-5">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <a href="{{ url_for('user.homepage') if session.get('email') else url_for('home') }}" class="navbar-brand d-flex align-items-center mx-3" href="#">
+                            <img src="/static/images/kidocode_logo.png" height="40" alt="Kidocode Logo">
+                            <span class="ms-2 fw-bold text-primary">Check Out</span>
+                        </a>
+                    </div>
+                    {% if not is_logged_in %}
+                    <form method="POST">
+                        <h4 class="title text-center">Sign In</h4>
+                        {% include '/user/alert.html' %}
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Email" name="email" required>
+                          </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="password" placeholder="Password" name="password" required>
+                                <span class="input-group-text eye-icon" onclick="togglePassword()">
+                                  <i class="bi bi-eye-slash" id="togglePasswordIcon"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Sign In</button>
+                        </div>
+                        <div class="text-end mt-2">
+                          <a href="{{ url_for('forgotpass') }}" class="text-decoration-none">Forgot password?</a>
+                        </div>
+                      </form>
+                      <div class="text-center mt-3">
+                        <p>Don't have an account?<a href="{{ url_for('register') }}" class="text-decoration-none"> Sign Up and Shop!</a></p>
+                      </div>
+                    {% else %}
+                    <form method="POST" action="/user/checkout">
+                        <div class="mb-3">
+                            <label for="email" class="form-label fw-bold fs-5">Contact</label>
+                            <input type="email" class="form-control" id="email" name="email" value="{{ session.email }}">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold fs-5">Delivery Method</label>
+                            <div>
+                                <div class="form-check mt-2">
+                                    <input type="radio" class="form-check-input" id="delivery-ship" name="deliveryMethod" value="Delivery" disabled>
+                                    <label for="delivery-ship" class="form-check-label">Shipping (Coming Soon)</label>
+                                </div>
+                                <div class="form-check mt-2">
+                                    <input type="radio" class="form-check-input" id="delivery-pickup" name="deliveryMethod" value="Pick Up">
+                                    <label for="delivery-pickup" class="form-check-label">Self Pick-Up</label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Shipping Section -->
+                        <!--<div class="mb-3" id="shipping-address-section">
+                            <label for="country" class="form-label">Country/Region</label>
+                            <select id="country" class="form-select">
+                                <option selected>Malaysia</option>
+                            </select>
+                            <div class="row mt-3">
+                                <div class="col-md-6">
+                                    <label for="first-name" class="form-label">First Name</label>
+                                    <input type="text" class="form-control" id="first_name" placeholder="Given Name">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="last-name" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" id="last-name" placeholder="Surname">
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <label for="company" class="form-label">Company Name</label>
+                                <input type="text" class="form-control" id="company" placeholder="Optional">
+                            </div>
+                            <div class="mt-3">
+                                <label for="address" class="form-label">Address (P.O. Box Not Accepted)</label>
+                                <input type="text" class="form-control" id="address" placeholder="House number, Building, Street" required>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-4">
+                                    <label for="postalCode" class="form-label">Postal Code</label>
+                                    <input type="text" class="form-control" id="postalCode" placeholder="Postal Code" pattern="\d*" required>
+                                    <div class="invalid-feedback">
+                                        Please enter a valid postal code (numbers only).
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="city" class="form-label">City</label>
+                                    <input type="text" class="form-control" id="city" placeholder="City" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="state" class="form-label">State/Territory</label>
+                                    <select id="state" class="form-select" required>
+                                        <option selected>Kuala Lumpur</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <label for="phone" class="form-label">Contact Number</label>
+                                <input type="tel" class="form-control" id="phone" placeholder="Office/Mobile Number" required>
+                            </div>
+                            <div class="form-check mt-3">
+                                <input class="form-check-input" type="checkbox" id="save-info">
+                                <label class="form-check-label" for="save-info">
+                                    Save this information for next order.
+                                </label>
+                            </div>
+                        </div> -->
+                        <!-- Pickup Section -->
+                        <div class="card mb-3" id="self-pickup-section">
+                            <h6 class="card-header">Select Pickup Location</h6>
+                            <div class="card-body">
+                                <div class="list-group" id="branch-options">
+                                    {% for branch in branch %}
+                                    <div class="list-group-item">
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" name="pickup-location" id="branch-{{ branch.branchID }}" value="{{ branch.address }}" data-bs-toggle="collapse" data-bs-target="#details-{{ branch.branchID }}" aria-expanded="false" aria-controls="details-{{ branch.branchID }}" required>
+                                            <label for="branch-{{ branch.branchID }}" class="form-check-label">{{ branch.name }}</label>
+                                        </div>
+                                        <div class="collapse my-2 ms-4" id="details-{{ branch.branchID }}" data-bs-parent="#branch-options">
+                                            <p><strong>Address:</strong> {{ branch.address }}</p>
+                                            <p><strong>Operating Hours:</strong> {{ branch.operating_hours }}</p>
+                                            <a href="https://maps.app.goo.gl/{{ branch.link }}" target="_blank" class="btn btn-outline-primary btn-sm">
+                                                View on Google Maps
+                                            </a>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-primary" name="pickupPay">Place Order</button>
+                        </div>
+                    </form>
+                    {% endif %}
+                </div>
+                <!-- Right Section: Cart Summary -->
+                <div class="col-md-6">
+                    <div class="card mt-5">
+                        <div class="card-header bg-light">
+                            <h4 class="card-title mb-0">Order Summary</h4>
+                        </div>
+                        <div class="card-body">
+                            {% if cart_items %}
+                            {% for item_name, item in cart_items.items() %}
+                            <!-- Cart Items -->
+                            <div id="cart-summary">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <div>
+                                        <img src="{{ url_for('static', filename=item.image.replace('\\', '/')) }}" alt="{{ item_name }}" class="img-thumbnail" style="width: 60px; height: 60px; object-fit: cover;">
+                                        <span>{{ item_name }} (x{{item.quantity }})</span>
+                                    </div>
+                                    <span>RM{{ "%.2f"|format(item.price * item.quantity) }}</span>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            <hr>
+                            <!-- Subtotal -->
+                            <div class="d-flex justify-content-between">
+                                <span>Subtotal:</span>
+                                <span id="subtotal">RM{{ "%.2f"|format(total_price) }}</span>
+                            </div>
+                            <!-- Shipping Fee -->
+                            <div class="d-flex justify-content-between">
+                                <span>Shipping:</span>
+                                <span id="shipping-fee">Shipping fee will be calculated later</span>
+                            </div>
+                            <!-- Total -->
+                            <div class="d-flex justify-content-between fw-bold">
+                                <span>Total:</span>
+                                <span id="total">RM{{ "%.2f"|format(total_price) }}</span>
+                            </div>
+                        {% else %}
+                            <p class="text-center">Your cart is empty. Add items to place an order!</p>
+                        {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const pickupRadio = document.getElementById('delivery-pickup');
+                const shipRadio = document.getElementById('delivery-ship');
+                const shipSection = document.getElementById('shipping-address-section');
+                const pickupSection = document.getElementById('self-pickup-section')
+
+                pickupRadio.checked = true;
+
+                shipSection.style.display = 'none';
+
+                document.querySelectorAll('input[name="delivery-method"]').forEach(input => {
+                    input.addEventListener('change', () => {
+                        if(pickupRadio.checked){
+                            shipSection.style.display = 'none';
+                            pickupSection.style.display = 'block'
+                        } else if (shipRadio.checked) {
+                            shipSection.style.display = 'block';
+                            pickupSection.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

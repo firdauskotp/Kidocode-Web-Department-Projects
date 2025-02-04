@@ -1,0 +1,109 @@
+<style>
+    .modal-content {
+        border-radius: 10px;
+    }
+    
+    .modal-header {
+        background-color: #f8f9fa;
+    }
+
+    .modal-title {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .product-description p {
+        line-height: 1.6;
+        color: #555;
+    }
+
+    .addToCartModal-btn {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: white;
+        padding: 10px;
+    }
+
+    .addToCartModal-btn:hover {
+        background-color: #0056b3;
+        border-color: #004085;
+        color: white;
+        transform: scale(1.05);
+    }
+
+    @media (max-width: 768px) {
+        .modal-dialog {
+            max-width: 90%;
+            margin: 0 auto;
+        }
+
+        .modal-body {
+            padding: 15px;
+        }
+
+        .product-description p {
+            font-size: 14px;
+        }
+        
+        .addToCartModal-btn {
+            padding: 12px;
+        }
+    }
+</style>
+<div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="productModalLabel">Product Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="product-details"></div>
+                <hr>
+                <h5>Customer Reviews</h5>
+                <div id="product-reviews"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+function showProductModal(product) {
+    const modalElement = document.getElementById('productModal');
+    if (!modalElement) {
+        console.error('Product modal not found in the DOM.');
+        return;
+    }
+
+    // Populate the product details
+    modalElement.querySelector('.modal-title').textContent = product.name || 'Product Name Not Available';
+    modalElement.querySelector('#product-details').innerHTML = `
+        <div class="text-center">
+            <img src="${product.image}" alt="${product.name}" class="img-fluid mb-3" style="max-height: 300px; object-fit: contain;">
+        </div>
+        <div class="product-description">
+            <p class="fw-bold">${product.description}</p>
+            <p><strong>Price:</strong> RM${product.price}</p>
+            <p><strong>Quantity available:</strong> ${product.quantity}</p>
+            <button class="btn addToCartModal-btn w-100 mt-3" onclick="addToCart({ name: '${product.name}', price: ${product.price}, img: '${product.image}' })">Add to Cart</button>
+        </div>
+    `;
+
+    // Generate reviews
+    const reviewsContainer = modalElement.querySelector('#product-reviews');
+    if (product.reviews.length) {
+        reviewsContainer.innerHTML = product.reviews.map(review => `
+            <div class="review-item mb-3">
+                <p class="mb-1"><strong>${review.user}</strong> <small>(${review.created_at})</small></p>
+                <p>${'⭐'.repeat(review.rating)}</p>
+                <p>${review.comment || 'No comment provided.'}</p>
+            </div>
+        `).join('');
+    } else {
+        reviewsContainer.innerHTML = '<p class="text-muted">No reviews yet for this product.</p>';
+    }
+
+    // Show the modal
+    const productModal = new bootstrap.Modal(modalElement);
+    productModal.show();
+}
+</script>

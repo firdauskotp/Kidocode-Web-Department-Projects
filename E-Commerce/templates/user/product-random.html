@@ -1,0 +1,85 @@
+<style>
+    #productRandomSection .carousel-item {
+        display: flex !important;
+        justify-content: center;
+    }
+
+    #productRandomSection .card {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    #productRandomSection .card img {
+        height: 200px;
+        object-fit: cover;
+    }
+
+    #productRandomSection .card-hover:hover {
+        transform: scale(1.05);
+        transition: transform 0.3s ease;
+    }
+</style>
+<div id="productRandomSection" class="container my-3">
+    <div class="d-block d-md-none">
+        <div id="mobileProductCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                {% for product in product %}
+                <div class="carousel-item {% if loop.first %}active{% endif %}">
+                    <div class="card mx-auto card-wrapper card-hover p-2" data-category="{{ product.categoryID }}" data-parent-category="{{ product.parentCategoryID }}" data-product-id="{{ product.productID }}" data-context="main">
+                        {% if product.img is none %}
+                        <img src="/static/images/gambar.jpg" alt="{{ product.productName }}" class="card-img-top" style="height: 200px; object-fit: cover;">
+                        {% else %}
+                        <img src="{{ url_for('static', filename=product.img.replace('\\', '/')) }}" alt="{{ product.productName }}" class="card-img-top" style="height: 200px; object-fit: cover;">
+                        {% endif %}
+                        <div class="card-body d-flex flex-column" style="flex-grow: 1;">
+                            <h5 class="card-title product-card-title">{{ product.productName }}</h5>
+                            <p class="card-text">{{ product.description }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h4><strong>RM{{ product.price }}</strong></h4>
+                                {% if product.img is none %}
+                                <button class="btn btn-primary add-to-cart-btn" data-name="{{ product.productName }}" data-price="{{ product.price }}" data-quantity="{{ product.quantity }}" data-img="/static/images/gambar.jpg">Add to cart</button>
+                                {% else %}
+                                <button class="btn btn-primary add-to-cart-btn" data-name="{{ product.productName }}" data-price="{{ product.price }}" data-quantity="{{ product.quantity }}" data-img="{{ url_for('static', filename=product.img.replace('\\', '/')) }}">Add to cart</button>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#mobileProductCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#mobileProductCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+    <div class="row justify-content-center my-2 d-none d-md-flex">
+        {% for product in product[:3] %}
+        <div class="col-md-3 mx-2 mb-3 card-wrapper p-2" data-category="{{ product.categoryID }}" data-parent-category="{{ product.parentCategoryID }}" data-product-id="{{ product.productID }}" data-context="main">
+            <div class="card card-hover">
+                {% if product.img is none %}
+                <img src="/static/images/gambar.jpg" alt="{{ product.productName }}" class="card-img-top" style="height: 200px; object-fit: cover;">
+                {% else %}
+                <img src="{{ url_for('static', filename=product.img.replace('\\', '/')) }}" alt="{{ product.productName }}" class="card-img-top" style="height: 200px; object-fit: cover;">
+                {% endif %}
+                <div class="card-body d-flex flex-column" style="flex-grow: 1;">
+                    <h5 class="card-title product-card-title">{{ product.productName }}</h5>
+                    <p class="card-text">{{ product.description }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h4><strong>RM{{ product.price }}</strong></h4>
+                        {% if product.img is none %}
+                        <button class="btn btn-primary add-to-cart-btn" data-name="{{ product.productName }}" data-price="{{ product.price }}" data-quantity="{{ product.quantity }}" data-img="/static/images/gambar.jpg">Add to cart</button>
+                        {% else %}
+                        <button class="btn btn-primary add-to-cart-btn" data-name="{{ product.productName }}" data-price="{{ product.price }}" data-quantity="{{ product.quantity }}" data-img="{{ url_for('static', filename=product.img.replace('\\', '/')) }}">Add to cart</button>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
